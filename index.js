@@ -12,11 +12,19 @@ app.get("/", function(require, response){
 });
 
 app.get("/register", function(require, response){
-    response.render("register/index");
+    response.render("register/user/index");
 });
 
 app.get("/home", function(require, response){
     response.render("home/index");
+});
+
+app.get("/register/activity", function(require, response){
+    response.render("register/activity/index");
+});
+
+app.get("/register/category", function(require, response){
+    response.render("register/category/index");
 });
 
 app.listen(3333, () => {
