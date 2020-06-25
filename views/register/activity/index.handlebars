@@ -3,22 +3,22 @@
         <div class="col">
             <center><h2>Cadastrar tarefa</h2></center>
             <hr>    
-            <form action="" method="POST">
+            <form action="/activity/register" method="POST">
                 <div class="form-group">
-                    <label for="title-activity">Título da tarefa:</label>
-                    <input type="text" class="form-control" id="title-activity" name="title-activity" placeholder="Digite um título para sua nova tarefa" required>
+                    <label for="title_activity">Título da tarefa:</label>
+                    <input type="text" class="form-control" id="title_activity" name="title_activity" placeholder="Digite um título para sua nova tarefa" required>
                 </div>
                 <div class="form-group">
-                    <label for="category-activity">Selecione a categoria da tarefa:</label>
-                    <select class="custom-select" id="category-activity" name="category-activity" required>
-                        <option value="1">Escola</option>
-                        <option value="2">Casa</option>
-                        <option value="3">Trabalho</option>
+                    <label for="category_activity">Selecione a categoria da tarefa:</label>
+                    <select class="custom-select" id="category_activity" name="category_activity" required>
+                        {{#each categorys}}
+                            <option value="{{dataValues.name}}">{{dataValues.name}}</option>
+                        {{/each}}
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="content-activity">Digite a ação da tarefa:</label>
-                    <textarea class="form-control" id="content-activity" name="content-activity" rows="3" required></textarea>
+                    <label for="content_activity">Digite a ação da tarefa:</label>
+                    <textarea class="form-control" id="content_activity" name="content_activity" rows="3" required></textarea>
                 </div>
                 <button type="submit" class="btn btn-success btn-login">Cadastrar</button>
                 <a href="/home" class="btn btn-danger btn-login">Voltar ao home</a>
