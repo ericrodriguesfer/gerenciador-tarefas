@@ -11,7 +11,7 @@ app.get("/", function(require, response){
     response.render("login/index");
 });
 
-app.get("/register", function(require, response){
+app.get("/register/user", function(require, response){
     response.render("register/user/index");
 });
 
