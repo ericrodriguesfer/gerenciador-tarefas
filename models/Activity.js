@@ -14,7 +14,7 @@ const Activity = database.sequelize.define('activitys', {
         type: database.Sequelize.DATEONLY
     },
     date_end: {
-        type: database.Sequelize.DATE
+        type: database.Sequelize.DATEONLY
     },
     concluded: {
         type: database.Sequelize.BOOLEAN

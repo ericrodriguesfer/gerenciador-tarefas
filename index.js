@@ -30,7 +30,7 @@ app.get("/register/user", function(require, response){
 
 app.get("/home", function(require, response){
     if(localStorage.getItem('logon')){
-        Activity.findAll({where: {'user': localStorage.getItem('user-id')}}).then(function(activitys){
+        Activity.findAll({where: {'user': localStorage.getItem('user-id')}}, {order: [['id', 'DESC']]}).then(function(activitys){
             response.render("home/index", {activitys: activitys});
         });
     }else{
@@ -39,13 +39,21 @@ app.get("/home", function(require, response){
 });
 
 app.get("/register/activity", function(require, response){
-    Category.findAll({where: {'user': localStorage.getItem('user-id')}}).then(function(categorys){
-        response.render("register/activity/index", {categorys: categorys});
-    });
+    if(localStorage.getItem('logon')){
+        Category.findAll({where: {'user': localStorage.getItem('user-id')}}).then(function(categorys){
+            response.render("register/activity/index", {categorys: categorys});
+        });
+    }else{
+        response.render("login/index");
+    }
 });
 
 app.get("/register/category", function(require, response){
-    response.render("register/category/index");
+    if(localStorage.getItem('logon')){
+        response.render("register/category/index");
+    }else{
+        response.render("login/index");
+    }
 });
 
 //Rotas de funcionamento da aplicação ou backend
@@ -99,6 +107,22 @@ app.post("/activity/register", function(require, response){
     }).catch(function(error){
         response.send('Fail create new activity ' + error);
     });
+});
+
+app.get("/activity/conclude/:id", function(require, response){
+    Activity.update({
+        date_end: date(),
+        concluded: true,
+    },{where:{'id': require.params.id}}).then(function(){
+        response.redirect("/home");
+    }).catch(function(error){
+        response.send('Fail in conclud this activity ' + error);
+    });
+});
+
+app.get("/logout", function(require, response){
+    localStorage.clear();
+    response.redirect("/");
 });
 
 app.listen(3333, () => {

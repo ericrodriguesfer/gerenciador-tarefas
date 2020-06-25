@@ -6,7 +6,7 @@
             <center>
                 <a href="/register/category" class="btn btn-success btn-home">Adicionar uma categoria</a>
                 <a href="/register/activity" class="btn btn-info btn-home">Adicionar uma tarefa</a>
-                <a href="" class="btn btn-danger btn-logout">Sair</a>
+                <a href="/logout" class="btn btn-danger btn-logout">Sair</a>
             </center>
         </div>
     </div>
@@ -23,7 +23,7 @@
                                 <h5 class="card-title">{{dataValues.title}}</h5>
                                 <p class="card-text">{{dataValues.action}}</p>
                                 <h6 class="card-subtitle mb-2 text-muted">De: {{dataValues.date_start}}</h6>
-                                <a href="" class="btn btn-primary btn-login">Concluir</a>
+                                <a href="/activity/conclude/{{dataValues.id}}" class="btn btn-primary btn-login">Concluir</a>
                             </div>
                         </div>
                     {{/unless}}
