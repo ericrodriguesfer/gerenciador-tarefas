@@ -30,7 +30,7 @@ app.get("/register/user", function(require, response){
 
 app.get("/home", function(require, response){
     if(localStorage.getItem('logon')){
-        Activity.findAll({where: {'user': localStorage.getItem('user-id')}}, {order: [['id', 'DESC']]}).then(function(activitys){
+        Activity.findAll({where: {'user': localStorage.getItem('user-id')}, order: [['id', 'DESC']]}).then(function(activitys){
             response.render("home/index", {activitys: activitys});
         });
     }else{
