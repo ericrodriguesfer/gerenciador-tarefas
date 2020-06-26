@@ -49,9 +49,19 @@
 }
 
 .box-cards{
-    text-align: justify;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+}
+
+.box-cards p{
+    text-align: justify;
+}
+
+.category-atv p{
+    font-size: 13px;
+    margin: 2px;
+    margin-top: -10px;
+    text-align: right;
 }
 
 .row-body{
