@@ -119,7 +119,7 @@ app.post("/user/register", function(require, response){
     }).then(function(){
         response.redirect("/");
     }).catch(function(error){
-        response.send('Fail create new user ' + error);
+        response.redirect("/erros/user");
     });
 });
 
