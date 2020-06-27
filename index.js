@@ -56,6 +56,46 @@ app.get("/register/category", function(require, response){
     }
 });
 
+app.get("/error", function(require, response){
+    localStorage.clear();
+    response.render("erros/error/index");
+});
+
+app.get("/erros/login", function(require, response){
+    if(localStorage.getItem('error-login'))
+        response.render("erros/login/index");
+    else
+        response.redirect("/error");
+});
+
+app.get("/erros/category", function(require, response){
+    if(localStorage.getItem('logon'))
+        response.render("erros/category/index");
+    else 
+        response.redirect("/error");
+});
+
+app.get("/erros/activity", function(require, response){
+    if(localStorage.getItem('logon'))
+        response.render("erros/activity/index");
+    else 
+        response.redirect("/error");
+});
+
+app.get("/erros/conclude", function(require, response){
+    if(localStorage.getItem('logon'))
+        response.render("erros/conclude/index");
+    else 
+        response.redirect("/error");
+});
+
+app.get("/erros/user", function(require, response){
+    if(!localStorage.getItem('logon'))
+        response.render("erros/user/index");
+    else
+        response.redirect("/error");
+});
+
 //Rotas de funcionamento da aplicação ou backend
 
 app.post("/login", function(require, response){
@@ -66,7 +106,8 @@ app.post("/login", function(require, response){
         response.redirect("/home");
     }).catch(function(error){
         localStorage.clear();
-        response.redirect("/");
+        localStorage.setItem('error-login', true);
+        response.redirect("/erros/login");
     });
 });
 
@@ -89,7 +130,7 @@ app.post("/category/register", function(require, response){
    }).then(function(){
         response.redirect("/home");
    }).catch(function(error){
-        response.send('Fail create new category ' + error);
+        response.redirect("/erros/category");
    });
 });
 
@@ -105,7 +146,7 @@ app.post("/activity/register", function(require, response){
     }).then(function(){
         response.redirect("/home");
     }).catch(function(error){
-        response.send('Fail create new activity ' + error);
+        response.redirect("/erros/activity");
     });
 });
 
@@ -116,7 +157,7 @@ app.get("/activity/conclude/:id", function(require, response){
     },{where:{'id': require.params.id}}).then(function(){
         response.redirect("/home");
     }).catch(function(error){
-        response.send('Fail in conclud this activity ' + error);
+        response.redirect("/erros/conclude");
     });
 });
 
